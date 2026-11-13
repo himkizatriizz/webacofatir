@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GempAjar — Mekanisme Terjadinya Gempa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#beranda">GempAjar</a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="#mekanisme">Mekanisme</a>
+      <a href="#sesar">Sesar</a>
+      <a href="#gelombang">Gelombang</a>
+      <a href="#simulasi">Simulasi</a>
+    </nav>
+    <button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section id="beranda" class="hero">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="earth-glow"></div>
+        <div class="fault-lines">
+          <span class="fault f1"></span>
+          <span class="fault f2"></span>
+          <span class="fault f3"></span>
+        </div>
+        <div class="ripple r1"></div>
+        <div class="ripple r2"></div>
+        <div class="ripple r3"></div>
+        <div class="epicenter"></div>
+      </div>
+      <div class="hero-copy">
+        <p class="brand-mark">GempAjar</p>
+        <h1>Mekanisme di balik getaran bumi</h1>
+        <p class="lead">Pelajari bagaimana energi di dalam kerak bumi menumpuk, terlepas, dan merambat sebagai gempa.</p>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="#mekanisme">Mulai belajar</a>
+          <a class="btn btn-ghost" href="#simulasi">Coba simulasi</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="mekanisme" class="section mechanism">
+      <div class="section-head">
+        <h2>Bagaimana gempa terbentuk</h2>
+        <p>Gempa terjadi ketika batuan di sepanjang sesar tidak lagi mampu menahan tegangan, lalu melepaskan energi secara tiba-tiba.</p>
+      </div>
+
+      <ol class="steps" id="steps">
+        <li class="step is-active" data-step="0">
+          <button type="button" class="step-tab">
+            <span class="step-num">01</span>
+            <span class="step-title">Tegangan menumpuk</span>
+          </button>
+          <div class="step-body">
+            <p>Lempeng tektonik bergerak sangat lambat. Gesekan di batas sesar menahan gerakan, sehingga energi elastis tersimpan di batuan seperti pegas yang ditarik.</p>
+          </div>
+        </li>
+        <li class="step" data-step="1">
+          <button type="button" class="step-tab">
+            <span class="step-num">02</span>
+            <span class="step-title">Ambang kritis</span>
+          </button>
+          <div class="step-body">
+            <p>Ketika tegangan melebihi kekuatan gesekan dan kekuatan batuan, bidang sesar mulai bergeser. Titik awal pergeseran disebut hiposentrum.</p>
+          </div>
+        </li>
+        <li class="step" data-step="2">
+          <button type="button" class="step-tab">
+            <span class="step-num">03</span>
+            <span class="step-title">Energi terlepas</span>
+          </button>
+          <div class="step-body">
+            <p>Batuan berpindah mendadak. Energi yang tersimpan berubah menjadi gelombang seismik yang merambat ke segala arah melalui bumi.</p>
+          </div>
+        </li>
+        <li class="step" data-step="3">
+          <button type="button" class="step-tab">
+            <span class="step-num">04</span>
+            <span class="step-title">Getaran di permukaan</span>
+          </button>
+          <div class="step-body">
+            <p>Gelombang mencapai permukaan di atas hiposentrum (episentrum). Intensitas yang dirasakan bergantung pada jarak, kedalaman, dan jenis tanah.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="mechanism-stage" aria-live="polite">
+        <canvas id="mechanismCanvas" width="720" height="360" role="img" aria-label="Animasi tahapan mekanisme gempa"></canvas>
+        <p class="stage-caption" id="stageCaption">Tegangan menumpuk di sepanjang bidang sesar.</p>
+      </div>
+    </section>
+
+    <section id="sesar" class="section faults">
+      <div class="section-head">
+        <h2>Tiga jenis pergerakan sesar</h2>
+        <p>Arah gerakan relatif di sepanjang sesar menentukan jenis gempa dan bentuk deformasi di permukaan.</p>
+      </div>
+
+      <div class="fault-switcher" role="tablist" aria-label="Jenis sesar">
+        <button type="button" class="fault-btn is-active" role="tab" aria-selected="true" data-fault="normal">Normal</button>
+        <button type="button" class="fault-btn" role="tab" aria-selected="false" data-fault="reverse">Naik</button>
+        <button type="button" class="fault-btn" role="tab" aria-selected="false" data-fault="strike">Geser</button>
+      </div>
+
+      <div class="fault-panel">
+        <div class="fault-diagram">
+          <canvas id="faultCanvas" width="520" height="320" role="img" aria-label="Diagram jenis sesar"></canvas>
+        </div>
+        <div class="fault-info">
+          <h3 id="faultTitle">Sesar normal</h3>
+          <p id="faultText">Terjadi saat kerak meregang. Blok hanging wall turun relatif terhadap footwall. Umum di zona ekstensi seperti rift valley.</p>
+          <ul id="faultPoints">
+            <li>Gaya: tarikan (tension)</li>
+            <li>Gerakan: hanging wall turun</li>
+            <li>Contoh: sesar di zona rift</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="gelombang" class="section waves">
+      <div class="section-head">
+        <h2>Gelombang seismik</h2>
+        <p>Energi gempa merambat sebagai gelombang. Setiap jenis bergerak berbeda dan membawa informasi tentang kekuatan serta lokasi sumber.</p>
+      </div>
+
+      <div class="wave-grid">
+        <article class="wave-item" data-wave="p">
+          <h3>Gelombang P</h3>
+          <p>Gelombang primer: paling cepat, merapatkan dan meregangkan batuan. Bisa lewat padat dan cair.</p>
+          <div class="wave-viz" id="waveP" aria-hidden="true"></div>
+        </article>
+        <article class="wave-item" data-wave="s">
+          <h3>Gelombang S</h3>
+          <p>Gelombang sekunder: lebih lambat, menggeser batuan tegak lurus arah rambat. Tidak lewat cairan.</p>
+          <div class="wave-viz" id="waveS" aria-hidden="true"></div>
+        </article>
+        <article class="wave-item" data-wave="surface">
+          <h3>Gelombang permukaan</h3>
+          <p>Merambat di permukaan bumi. Biasanya paling merusak karena amplitudo besar dan redaman lambat.</p>
+          <div class="wave-viz" id="waveSurface" aria-hidden="true"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="simulasi" class="section sim">
+      <div class="section-head">
+        <h2>Simulasi tegangan sesar</h2>
+        <p>Geser kontrol untuk menumpuk tegangan. Saat ambang kritis tercapai, sesar “lepas” dan melepaskan gempa.</p>
+      </div>
+
+      <div class="sim-layout">
+        <div class="sim-controls">
+          <label class="control">
+            <span>Laju penumpukan tegangan</span>
+            <input type="range" id="stressRate" min="1" max="10" value="4" />
+          </label>
+          <label class="control">
+            <span>Kekuatan gesekan sesar</span>
+            <input type="range" id="friction" min="40" max="95" value="70" />
+          </label>
+          <div class="meter">
+            <div class="meter-labels">
+              <span>Tegangan</span>
+              <span id="stressValue">0%</span>
+            </div>
+            <div class="meter-track">
+              <div class="meter-fill" id="stressFill"></div>
+              <div class="meter-threshold" id="thresholdMark"></div>
+            </div>
+          </div>
+          <div class="sim-actions">
+            <button type="button" class="btn btn-primary" id="btnStart">Jalankan</button>
+            <button type="button" class="btn btn-ghost" id="btnReset">Reset</button>
+          </div>
+          <p class="sim-status" id="simStatus">Siap. Tekan Jalankan untuk mulai menumpuk tegangan.</p>
+        </div>
+        <div class="sim-stage">
+          <canvas id="simCanvas" width="640" height="360" role="img" aria-label="Simulasi pelepasan tegangan sesar"></canvas>
+          <p class="quake-log" id="quakeLog">Belum ada gempa dalam sesi ini.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quiz" id="kuis">
+      <div class="section-head">
+        <h2>Uji pemahaman</h2>
+        <p>Satu pertanyaan singkat untuk memastikan konsep utamanya sudah jelas.</p>
+      </div>
+      <form class="quiz-form" id="quizForm">
+        <fieldset>
+          <legend>Apa yang langsung menyebabkan getaran gempa di permukaan?</legend>
+          <label class="quiz-option">
+            <input type="radio" name="q1" value="a" />
+            <span>Angin kencang di atmosfer</span>
+          </label>
+          <label class="quiz-option">
+            <input type="radio" name="q1" value="b" />
+            <span>Pelepasan energi elastis di sesar yang merambat sebagai gelombang seismik</span>
+          </label>
+          <label class="quiz-option">
+            <input type="radio" name="q1" value="c" />
+            <span>Perubahan suhu permukaan laut</span>
+          </label>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Periksa jawaban</button>
+        <p class="quiz-feedback" id="quizFeedback" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>GempAjar</strong> — media pembelajaran sederhana tentang mekanisme gempa bumi.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
